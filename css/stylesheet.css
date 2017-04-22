@@ -1,0 +1,161 @@
+body {
+	background-color: Linen;
+	font-family: serif;
+}
+
+.present {
+  display: flex;
+  flex-direction: column;
+  width: 23%;
+  background: black;
+  padding: 10px;
+  margin: 0;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.show {
+  background-color: lightcoral;
+  display: block;
+  font-family: serif;
+  margin-left: 45%;
+  margin-top: 5%;
+  border-style: inset;
+  border-radius: 10px;
+  width: 260px;
+  padding: 10px;
+}
+
+#name {
+  margin-left: 1.7em;
+}
+
+.show1 {
+  background-color: lightcoral;
+  display: block;
+  font-family: serif;
+  margin-left: 35%;
+  margin-top: 5%;
+  border-style: inset;
+  border-radius: 10px;
+  width: 600px;
+  padding: 10px;
+}
+
+#name1 {
+  margin-left: 6.1em;
+}
+
+#tete {
+  float : right;
+  text-align: right;
+  background-color: darkblue;
+  border-radius: 10px;
+  border: solid 1px Linen;
+  padding : 15px;
+}
+
+#tete a {
+	color : white;
+	padding: 10px;
+}
+
+.menu {
+  border : 1px solid Linen;
+  border-radius : 8px;
+  background-color: darkblue;
+  margin : 5px;
+  padding : 10px;
+}
+
+.menu a {
+  color : white;
+  font-size: large;
+}
+
+#center {
+  width: 20%;
+  margin : 0 auto;
+}
+
+#banner img {
+  z-index: 5;
+  margin : 20px;
+}
+
+#banner H1 {
+	position: absolute;
+	text-align: center;
+	color : white;
+	top : 500px;
+	left: 1100px;
+	z-index: 10;
+	text-shadow: 0 0 1px;
+	font-size: 62px;
+	letter-spacing: 3px;
+}
+
+ul {
+ list-style-type: none;
+ list-style : none;
+}
+
+li {
+	text-align: center;
+}
+
+.product {
+  position: relative;
+  float: left;
+  margin : 80px;
+  background-color : white;
+  text-align: center;
+}
+
+.product H2 {
+	color : darkblue;
+}
+
+td {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.line {
+	border: solid 1px yellow;
+	padding-bottom: 15px;
+}
+
+.bonjour {
+	width: 150px;
+	float: left;
+	margin-left: 20px;
+	background-color: white;
+	border: 1px solid darkblue;
+	border-radius: 10px;
+	padding-left: 5px;
+}
+
+.bonjour H1 {
+	font-size: 19px;
+}
+
+.button {
+	background-color: lightcoral;
+	border: 1px solid white;
+	border-radius: 10px;;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
