@@ -1,0 +1,125 @@
+body {
+	background-color: azure;
+	font-family: sans-serif;
+}
+
+#bg {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/bg.jpeg") no-repeat center center fixed;
+	background-size: cover;
+	-webkit-filter: blur(2px);
+	z-index: -1;
+}
+
+#bglog {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/bglog.jpeg") no-repeat center center fixed;
+	background-size: cover;
+	-webkit-filter: blur(2px);
+	z-index: -1;
+}
+
+.show {
+  display: block;
+  margin-top: 5%;
+  color: #fff;
+  line-height: 2em;
+}
+
+
+#log {
+  margin: 20% auto;
+  width: 20%;
+  padding: 20px 20px;
+  border: solid 1px;
+  background: rgba(173,216,230,.7);
+  text-align: center;
+  display: block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	  
+}
+
+#log a {
+	color : white;
+	padding: 0px 10px;
+	text-align: center;
+	margin: 0px auto;
+	font-size: 1em;
+}
+
+.menu {
+  border : 1px solid Linen;
+  border-radius : 8px;
+  background-color: darkblue;
+  margin : 5px;
+  padding : 10px;
+}
+
+.menu a {
+  color : white;
+  font-size: large;
+}
+
+#center {
+  width: 20%;
+  margin : 0 auto;
+}
+
+
+ul {
+ list-style-type: none;
+ list-style : none;
+}
+
+li {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.line {
+	border: solid 1px yellow;
+	padding-bottom: 15px;
+}
+
+.bonjour {
+	width: 150px;
+	float: left;
+	margin-left: 20px;
+	background-color: white;
+	border: 1px solid darkblue;
+	border-radius: 10px;
+	padding-left: 5px;
+}
+
+input {
+	margin-bottom: 2%;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	font-size: 1em;
+	box-sizing: border-box;
+	padding: 2px 4px;
+}
+
+input[type=submit] {
+	cursor: pointer;
+	background: white;
+	color: rgb(173,216,230);
+	padding: 5px 5px;
+}
+
+h1 {
+	color: white;
+	font-family: sans-serif;
+}
