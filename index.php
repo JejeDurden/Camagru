@@ -1,16 +1,17 @@
 <?PHP
 session_start();
-if ($_SESSION["loggued_on_user"] == NULL)
-{
-	header("Location: create_user.php");
-}
-else
+include './config/database.php';
+/*if(!empty($_SESSION["loggued_on_user"]))
 {
 	echo "<div class='bonjour'><h1>Bonjour ".$_SESSION["loggued_on_user"]."</h1>";
 	echo "<a href='modif.html'>Modifier un compte</a>";
 	echo "<a href='del_user.html'>Supprimer un compte</a>";
 	echo "<form action='logout.php'><button class='button' name='logout'>Logout</button></form></div>";
 }
+else
+{
+	header("Location: create_user.php");
+}*/
 ?>
 
 <html>
@@ -18,18 +19,52 @@ else
 	<head>
 		<meta charset="UTF-8" />
 		<title>Camagru</title>
-		<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="./public/css/stylesheet.css">
 	</head>
 	<body>
-		<header><p>I am the header</p></header>
-		<form action="create.php" method="post" class="show">
-			<input type="text" name="login" value="" placeholder="Login" id="name"><br />
-			<input type="text" placeholder="Email"name="email" value=""><br/>
-			<input type="text" placeholder="Password"name="passwd" value=""><br />
-			<input type="submit" value="Sign up">
-			<a href="login.html">Login</a>
-		</form>
+		<header>
+			<div class="title">Camagru</div>
+		</header>
+		<div class="main">
+			<video id="video" width="640" height="480" autoplay></video>
+			<button id="snap">Snap</button>
+			<canvas id="canvas" width="640" height="480"></canvas>
 		</div>
+		<aside>
+		<h3>Last pics</h3>
+		<?PHP
+		try {
+			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$sql = $conn->query("SELECT * FROM image");
+			while ($row = $sql->fetch())
+			{
+				echo "<tr>";
+				echo "<td>" . $row['id'] ."</td>";
+				echo "</tr>";
+			}
+		}
+		catch(PDOException $e) {
+			echo "<div class='error'>Connection failed: " . $e->getMessage() . "\n</div>";
+		}
+		?>
+		</aside>
 		<footer><p>I am the footer</p></footer>
 	</body>
+	<script>
+		var video = document.getElementById('video');
+		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+		{
+			navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
+			{
+				video.src = window.URL.createObjectURL(stream);
+				video.play();
+			});
+			var canvas = document.getElementById('canvas');
+			var context = canvas.getContext('2d');
+			var video = document.getElementById('video');
+			document.getElementById("snap").addEventListener("click", function() {
+				context.drawImage(video, 0, 0, 640, 480);
+				});
+		}
+	</script>
 </html>
