@@ -6,7 +6,7 @@ function sendMail($dest, $login, $key) {
 	$msg = 'Welcome on Camagru,
 		To activate your account and access content on our website, please click
 		on the following link :
-		http://localhost:8000/validation.php?log='.urlencode($login).'&key='.urlencode($key).'
+		http://localhost:8080/Camagru/validation.php?log='.urlencode($login).'&key='.urlencode($key).'
 		Cheers,
 		Camagru Team';
 	$message = wordwrap($msg, 70, "\r\n");

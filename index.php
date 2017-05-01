@@ -1,17 +1,17 @@
 <?PHP
 session_start();
 include './config/database.php';
-/*if(!empty($_SESSION["loggued_on_user"]))
-{
-	echo "<div class='bonjour'><h1>Bonjour ".$_SESSION["loggued_on_user"]."</h1>";
-	echo "<a href='modif.html'>Modifier un compte</a>";
-	echo "<a href='del_user.html'>Supprimer un compte</a>";
-	echo "<form action='logout.php'><button class='button' name='logout'>Logout</button></form></div>";
-}
-else
+if(empty($_SESSION["loggued_on_user"]))
 {
 	header("Location: create_user.php");
-}*/
+}
+else if ($_POST["submit"] == "Log Out")
+{
+	header("Location: logout.php");
+}
+else if ($_POST["submit"] == "Upload a File")
+{
+}
 ?>
 
 <html>
@@ -23,11 +23,16 @@ else
 	</head>
 	<body>
 		<header>
-			<div class="title">Camagru</div>
+		<?PHP
+			echo "<a href='/'><h1>Camagru</h1></a><ul>";
+			echo "<li><form action='logout.php'><input type='submit' value='Log Out'></form></li>";
+			echo "<li><a href='gallery.php'>Gallery</a></li></ul>";
+		?>
 		</header>
 		<div class="main">
 		<video id="video" width="640" height="480" autoplay></video>
 		<button id="snap">Snap</button>
+		<form action='index.php'><input type='submit' class='upload' value='Upload a File'></form>
 		<canvas id="canvas" width="640" height="480"></canvas>
 		</div>
 		<aside>

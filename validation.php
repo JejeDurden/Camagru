@@ -10,7 +10,7 @@ if (isset($_GET["log"]) && isset($_GET["key"]))
 
 	try {
 		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		$sql = $dbh->prepare("SELECT token,active FROM user WHERE login like :login ");
+		$sql = $conn->prepare("SELECT token,active FROM user WHERE login like :login ");
 		$sql->bindParam(':login', $login);
 		$sql->execute();
 		$row = $sql->fetch();
@@ -24,10 +24,10 @@ if (isset($_GET["log"]) && isset($_GET["key"]))
 		{
 			if ($key == $keysql)
 			{
-				$sql = $dbh->prepare("UPDATE user SET active = 1 WHERE login like :login ");
+				$sql = $conn->prepare("UPDATE user SET active = 1 WHERE login like :login");
 				$sql->bindParam(':login', $login);
 				$sql->execute();
-				$SESSION["loggued_on_user"] = $login;
+				$_SESSION["loggued_on_user"] = $login;
 				header("Location: index.php");
 			}
 			else

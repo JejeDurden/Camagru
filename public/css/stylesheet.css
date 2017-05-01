@@ -6,7 +6,7 @@ body {
 
 header {
 	width: 100%;
-	padding: 20px 20px;
+	height: 5%;
 	display: block;
 	z-index: 101;
 	position: fixed;
@@ -14,12 +14,29 @@ header {
 	color: #1abc9c;
 }
 
-.title {
-	font-family: 'Helvetica', 'Arial', sans-serif;
-	font-size: 1.5em;
-	background-color: white;
+ul {
+	list-style-type: none;
+	padding: 0;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+li {
+	padding: 5px 14px;
+	float: right;
+	width: 60px;
+	height: 60px;
+}
+
+li a {
+	display: block;
 	color: #1abc9c;
-	letter-spacing: 0.2em;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #1abc9c;
+	color: white;
 }
 
 .main {
@@ -29,7 +46,7 @@ header {
 	float: left;
 	display: block;
 	position: relative;
-	padding-top: 5%;
+	padding-top: 6%;
 	letter-spacing: 1em;
 }
 
@@ -41,7 +58,7 @@ header {
 aside {
 	right: 0;
 	width: 30%;
-	padding-top: 7%;
+	padding-top: 3%;
 	height: 100%;
 	z-index: 100;
 	position: fixed;
@@ -118,15 +135,15 @@ footer {
 
 #snap {
 	width: 75px;
-	margin: 0 auto;
+	margin: 5 auto;
 	height: 75px;
 	border-radius: 50%;
 	border: 5px solid #cfdcec;
 	overflow: hidden;
-	background: #4679BD;
+	background: white;
+	color: #1abc9c;
 	box-shadow: 0 0 2px gray;
 	display: block;
-	color: white;
 	line-height: 1em;
 	text-align: center;
 	font-weight: bold;
@@ -140,20 +157,6 @@ footer {
 }
 
 
-ul {
- list-style-type: none;
- list-style : none;
-}
-
-li {
-	text-align: center;
-}
-
-td {
-	text-align: center;
-	padding-top: 10px;
-}
-
 .line {
 	border: solid 1px yellow;
 	padding-bottom: 15px;
@@ -166,24 +169,40 @@ input {
 	font-size: 0.9em;
 	box-sizing: border-box;
 	padding: 5px 9px;
+	display: block;
+	vertical-align: middle;
 }
 
 input[type=submit] {
 	cursor: pointer;
-	background: white;
+	background-color: #1abc9c;
+	color: white;
+	padding: 5px 5px;
+	vertical-align: middle;
+}
+
+.upload {
+	cursor: pointer;
+	background-color: white;
 	color: #1abc9c;
 	padding: 5px 5px;
+	margin: 0 auto;
 }
 
 h1 {
+	float: left;
+	padding-left: 10px;
 	color: #1abc9c;
-	font-family: "Helvetica", "Arial", sans-serif;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 1.5em;
+	background-color: white;
+	letter-spacing: 0.2em;
 }
 
 .error {
 	width: 100%;
 	background-color: #FF6961;
-	margin: -7px 0px 0px 0px;
+	margin: 0px;
 	text-align: center;
 	padding: 3px;
 }
@@ -191,6 +210,6 @@ h1 {
 .sent {
 	width: 100%;
 	background-color: #B4ECB4;
-	margin: -7px 0px 0px 0px;
+	margin: 0px;
 	text-align: center;
 	padding: 3px;
