@@ -9,9 +9,6 @@ else if ($_POST["submit"] == "Log Out")
 {
 	header("Location: logout.php");
 }
-else if ($_POST["submit"] == "Upload a File")
-{
-}
 ?>
 
 <html>
@@ -30,10 +27,23 @@ else if ($_POST["submit"] == "Upload a File")
 		?>
 		</header>
 		<div class="main">
-		<video id="video" width="640" height="480" autoplay></video>
-		<button id="snap">Snap</button>
-		<form action='index.php'><input type='submit' class='upload' value='Upload a File'></form>
-		<canvas id="canvas" width="640" height="480"></canvas>
+		<script src="video.js" charset="utf-8"></script>
+			<video id="video" width="640" height="480" autoplay></video>
+			<button id="snap" onclick="javascript:Snap()">Snap</button>
+			<div >
+			<form action='index.php' id='upload'><input type='submit' value='Upload a File'></form>
+		<div class="filter">
+			<form action="index.php">
+				<label for="britney"><img src="./public/img/britney.png"></label>
+				<input type="radio" name="filter" value="britney">
+				<label for="presi"><img src="./public/img/prési.jpg"></label>
+				<input type="radio" name="filter" value="presi">
+				<label for="cat"><img src="./public/img/cat.png"></label>
+				<input type="radio" name="filter" value="cat">
+				<label for="pelle"><img src="./public/img/pelle.jpeg"></label>
+				<input type="radio" name="filter" value="pelle">
+			</form>
+		</div>
 		</div>
 		<aside>
 		<h3>Last pics</h3>
@@ -55,27 +65,10 @@ else if ($_POST["submit"] == "Upload a File")
 		}
 		?>
 		</aside>
-		<footer>
+		<div class ="footer">
 			<div><p>If you want to say hello or ask questions, do not hesitate to contact us !</p></div>
 			<div><h3>hello@camagru.com</h3></div>
-			<div><p>Developed with love by jdesmare in 2017</p></div>
-		</footer>
+			<div><p>Developed from Paris with love by jdesmare in 2017</p></div>
+		</div>
 	</body>
-	<script>
-		var video = document.getElementById('video');
-		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
-		{
-			navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
-			{
-				video.src = window.URL.createObjectURL(stream);
-				video.play();
-			});
-			var canvas = document.getElementById('canvas');
-			var context = canvas.getContext('2d');
-			var video = document.getElementById('video');
-			document.getElementById("snap").addEventListener("click", function() {
-				context.drawImage(video, 0, 0, 640, 480);
-				});
-		}
-	</script>
 </html>

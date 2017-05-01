@@ -1,5 +1,7 @@
 body {
 	margin: 0;
+	min-height: 100%;
+	height: 100%;
 	background-color: #1abc9c;
 	font-family: 'Helvetica', 'Arial', sans-serif;
 }
@@ -73,16 +75,19 @@ aside h3 {
 	color: white;
 }
 
-footer {
+.footer {
 	font-family: 'Helvetica', 'Arial', sans-serif;
 	background-color: white;
 	color: #1abc9c;
 	letter-spacing: 0.1em;
-	display: block;
 	width: 100%;
 	position: absolute;
+	right: 0;
 	bottom: 0;
+	left: 0;
+	padding: 1rem;
 	text-align: center;
+	clear: both;
 }
 
 #bg {
@@ -125,7 +130,7 @@ footer {
 }
 
 #log a {
-	color: white;
+	color: #1abc9c;
 	padding: 0px 10px;
 	text-align: center;
 	margin: 0px auto;
@@ -169,8 +174,6 @@ input {
 	font-size: 0.9em;
 	box-sizing: border-box;
 	padding: 5px 9px;
-	display: block;
-	vertical-align: middle;
 }
 
 input[type=submit] {
@@ -181,21 +184,29 @@ input[type=submit] {
 	vertical-align: middle;
 }
 
-.upload {
+#upload input {
+	margin: 15 auto;
 	cursor: pointer;
 	background-color: white;
 	color: #1abc9c;
-	padding: 5px 5px;
-	margin: 0 auto;
+	padding: 10px 5px;
+	display: block;
 }
 
-h1 {
+a h1 {
 	float: left;
 	padding-left: 10px;
 	color: #1abc9c;
 	font-family: 'Helvetica', 'Arial', sans-serif;
 	font-size: 1.5em;
 	background-color: white;
+	letter-spacing: 0.2em;
+}
+
+h1 {
+	color: #1abc9c;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 1.5em;
 	letter-spacing: 0.2em;
 }
 
@@ -213,3 +224,13 @@ h1 {
 	margin: 0px;
 	text-align: center;
 	padding: 3px;
+}
+
+label img {
+	height: 150px;
+	margin: 0 auto;
+}
+
+.filter {
+	margin: 0 auto;
+}

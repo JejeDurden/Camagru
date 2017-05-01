@@ -51,7 +51,7 @@ if (isset($_POST["submit"]))
 		<form action="create_user.php" method="post" class="show">
 			<input type="text" name="login" value="" placeholder="Login" id="name" required /><br />
 			<input type="text" placeholder="Email" name="email" value="" required /><br/>
-			<input type="text" placeholder="Password" minlength=8 name="passwd" value="" required /><br />
+			<input type="password" placeholder="Password" minlength=8 name="passwd" value="" required /><br />
 			<input type="submit" name="submit" value="Sign up">
 			<a href="login.php">Login</a>
 		</form>

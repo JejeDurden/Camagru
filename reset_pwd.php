@@ -65,8 +65,8 @@ if (isset($_GET["log"]) && isset($_GET["key"]) && isset($_POST["submit"]))
 		<div id="log">
 		<a href="/"><h1>Camagru</h1></a>
 		<form action="create_user.php" method="post" class="show">
-			<input type="text" placeholder="Password" minlength=8 name="passwd" value="" required /><br />
-			<input type="text" placeholder="Confirm password" minlength=8 name="confpasswd" value="" required /><br />
+			<input type="password" placeholder="Password" minlength=8 name="passwd" value="" required /><br />
+			<input type="password" placeholder="Confirm password" minlength=8 name="confpasswd" value="" required /><br />
 			<input type="submit" name="submit" value="Sign up">
 		</form>
 		</div>
