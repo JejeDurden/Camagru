@@ -36,9 +36,8 @@ if (isset($_POST["submit"]))
 		<div id="log">
 		<h1>Camagru</h1>
 		<form action="create_user.php" method="post" class="show">
-			<input type="text" name="login" value="" placeholder="Login" id="name" required /><br />
 			<input type="text" placeholder="Email" name="email" value="" required /><br/>
-			<input type="submit" name="submit" value="Reset Password">
+			<input type="submit" name="submit" value="Reset Password"><br />
 			<a href="login.php">Login</a>
 			<a href="create_user.php">Sign Up</a>
 		</form>

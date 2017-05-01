@@ -1,33 +1,36 @@
 body {
 	margin: 0;
-	background: url("../img/bglog.jpeg") no-repeat center center fixed;
-	background-size: cover;
+	background-color: #1abc9c;
 	font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 header {
 	width: 100%;
-	padding: 30px 30px;
-	background: url("../img/bglog.jpeg") no-repeat center center fixed;
+	padding: 20px 20px;
 	display: block;
 	z-index: 101;
-	background-size: cover;
 	position: fixed;
+	background-color: white;
+	color: #1abc9c;
 }
 
 .title {
 	font-family: 'Helvetica', 'Arial', sans-serif;
-	font-size: 2em;
-	color: white;
+	font-size: 1.5em;
+	background-color: white;
+	color: #1abc9c;
+	letter-spacing: 0.2em;
 }
 
 .main {
-	background: white;
+	background-color: #1abc9c;
+	color: white;
 	width: 70%;
 	float: left;
 	display: block;
 	position: relative;
 	padding-top: 5%;
+	letter-spacing: 1em;
 }
 
 #video {
@@ -42,19 +45,27 @@ aside {
 	height: 100%;
 	z-index: 100;
 	position: fixed;
-	border-left: 1px solid black;
+	border-left: 1px solid white;
 }
 
 aside h3 {
 	text-align: center;
-	border-bottom: solid 2px black;
+	border-bottom: solid 2px white;
 	margin: 10px 40px;
 	padding-bottom: 10px;
 	color: white;
 }
 
 footer {
-
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	background-color: white;
+	color: #1abc9c;
+	letter-spacing: 0.1em;
+	display: block;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
 }
 
 #bg {
@@ -92,17 +103,17 @@ footer {
   margin: 20% auto;
   width: 20%;
   padding: 20px 20px;
-  background: rgba(173,216,230,.7);
   text-align: center;
   display: block;
 }
 
 #log a {
-	color : white;
+	color: white;
 	padding: 0px 10px;
 	text-align: center;
 	margin: 0px auto;
 	font-size: 1em;
+	text-decoration: none;
 }
 
 #snap {
@@ -152,20 +163,20 @@ input {
 	margin-bottom: 2%;
 	border-radius: 4px;
 	border: 1px solid #ccc;
-	font-size: 1em;
+	font-size: 0.9em;
 	box-sizing: border-box;
-	padding: 2px 4px;
+	padding: 5px 9px;
 }
 
 input[type=submit] {
 	cursor: pointer;
 	background: white;
-	color: rgb(173,216,230);
+	color: #1abc9c;
 	padding: 5px 5px;
 }
 
 h1 {
-	color: white;
+	color: #1abc9c;
 	font-family: "Helvetica", "Arial", sans-serif;
 }
 

@@ -26,9 +26,9 @@ else
 			<div class="title">Camagru</div>
 		</header>
 		<div class="main">
-			<video id="video" width="640" height="480" autoplay></video>
-			<button id="snap">Snap</button>
-			<canvas id="canvas" width="640" height="480"></canvas>
+		<video id="video" width="640" height="480" autoplay></video>
+		<button id="snap">Snap</button>
+		<canvas id="canvas" width="640" height="480"></canvas>
 		</div>
 		<aside>
 		<h3>Last pics</h3>
@@ -36,11 +36,13 @@ else
 		try {
 			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			$sql = $conn->query("SELECT * FROM image");
-			while ($row = $sql->fetch())
+			$i = 0;
+			while ($row = $sql->fetch() && $i < 10)
 			{
 				echo "<tr>";
 				echo "<td>" . $row['id'] ."</td>";
 				echo "</tr>";
+				$i++;
 			}
 		}
 		catch(PDOException $e) {
@@ -48,7 +50,11 @@ else
 		}
 		?>
 		</aside>
-		<footer><p>I am the footer</p></footer>
+		<footer>
+			<div><p>If you want to say hello or ask questions, do not hesitate to contact us !</p></div>
+			<div><h3>hello@camagru.com</h3></div>
+			<div><p>Developed with love by jdesmare in 2017</p></div>
+		</footer>
 	</body>
 	<script>
 		var video = document.getElementById('video');
