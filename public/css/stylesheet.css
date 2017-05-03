@@ -41,20 +41,20 @@ li a:hover {
 	color: white;
 }
 
+#video {
+	display: block;
+	margin: 0 auto;
+}
+
 .main {
 	background-color: #1abc9c;
 	color: white;
 	width: 70%;
 	float: left;
 	display: block;
-	position: relative;
+	position: absolute;
 	padding-top: 6%;
 	letter-spacing: 1em;
-}
-
-#video {
-	margin: 0 auto;
-	display: block;
 }
 
 aside {
@@ -63,7 +63,7 @@ aside {
 	padding-top: 3%;
 	height: 100%;
 	z-index: 100;
-	position: fixed;
+	position: absolute;
 	border-left: 1px solid white;
 }
 
@@ -87,7 +87,6 @@ aside h3 {
 	left: 0;
 	padding: 1rem;
 	text-align: center;
-	clear: both;
 }
 
 #bg {
@@ -233,4 +232,13 @@ label img {
 
 .filter {
 	margin: 0 auto;
+}
+
+.radio-label, .radio-input {
+	display: inline-block;
+	vertical-align: top;
+}
+
+fieldset {
+	text-align: center;
 }

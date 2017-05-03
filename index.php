@@ -30,21 +30,22 @@ else if ($_POST["submit"] == "Log Out")
 		<script src="video.js" charset="utf-8"></script>
 			<video id="video" width="640" height="480" autoplay></video>
 			<button id="snap" onclick="javascript:Snap()">Snap</button>
-			<div >
 			<form action='index.php' id='upload'><input type='submit' value='Upload a File'></form>
-		<div class="filter">
-			<form action="index.php">
-				<label for="britney"><img src="./public/img/britney.png"></label>
-				<input type="radio" name="filter" value="britney">
-				<label for="presi"><img src="./public/img/prési.jpg"></label>
-				<input type="radio" name="filter" value="presi">
-				<label for="cat"><img src="./public/img/cat.png"></label>
-				<input type="radio" name="filter" value="cat">
-				<label for="pelle"><img src="./public/img/pelle.jpeg"></label>
-				<input type="radio" name="filter" value="pelle">
-			</form>
+		<form action="index.php">
+		<fieldset>
+			<div class="filter">
+					<label class="radio-label" for="britney"><img src="./public/img/britney.png"></label>
+					<input class="radio-input" type="radio" name="filter" value="britney">
+					<label class="radio-label" for="presi"><img src="./public/img/prési.png"></label>
+					<input class="radio-input" type="radio" name="filter" value="presi">
+					<label class="radio-label" for="cat"><img src="./public/img/cat.png"></label>
+					<input class="radio-input" type="radio" name="filter" value="cat">
+					<label class="radio-label" for="pelle"><img src="./public/img/pelle.jpeg"></label>
+					<input class="radio-input" type="radio" name="filter" value="pelle">
+			</div>
+		</fieldset>
 		</div>
-		</div>
+		</form>
 		<aside>
 		<h3>Last pics</h3>
 		<?PHP

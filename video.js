@@ -39,7 +39,7 @@ function Snap() {
 		var video = document.querySelector('video');
 		var canvas = document.createElement('canvas');
 		var context = canvas.getContext('2d');
-		var filter = document.querySelector('input[name = "img_filter"]:checked');
+		var filter = document.querySelector('input[name = "filter"]:checked');
 		if (filter) 
 		{
 			canvas.width = 640;
@@ -65,7 +65,7 @@ function Snap() {
 			document.getElementById('img').value = data;
 			var fd = new FormData(document.forms["form"]);
 			var httpr = new XMLHttpRequest();
-			httpr.open('POST', 'user/upload_img.php', true);
+			httpr.open('POST', 'create_img.php', true);
 			httpr.send(fd);
 		} 
 		else
