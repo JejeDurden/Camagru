@@ -18,6 +18,7 @@ header {
 	background-color: white;
 	color: #1abc9c;
 	top: 0;
+	z-index: 100;
 }
 
 ul {
@@ -63,7 +64,6 @@ video {
 	padding: 0;
 	width: 640px;
 	height: 400px;
-	margin-top: -400px;
 }
 
 .main {
@@ -216,6 +216,7 @@ h3 {
 #snap {
 	width: 75px;
 	margin: 0 auto;
+	margin-top: 10px;
 	height: 75px;
 	border-radius: 50%;
 	border: 5px solid #cfdcec;
@@ -246,12 +247,24 @@ input {
 	padding: 5px 9px;
 }
 
-input[type=submit] {
+input[type=submit], input[type=file] {
 	cursor: pointer;
 	background-color: #1abc9c;
 	color: white;
 	padding: 5px 5px;
 	vertical-align: middle;
+	display: block;
+}
+
+input[type=file] {
+	cursor: pointer;
+	background-color: #1abc9c;
+	color: white;
+	padding: 5px 5px;
+	vertical-align: middle;
+	margin: 0 auto;
+	display: none;
+	text-align: center;
 }
 
 #upload input {
@@ -260,7 +273,14 @@ input[type=submit] {
 	background-color: white;
 	color: #1abc9c;
 	padding: 10px 5px;
+}
+
+#fileToUpload {
 	display: block;
+}
+
+#submitHide {
+	display: none;
 }
 
 a h1 {
@@ -289,11 +309,14 @@ h1 {
 }
 
 canvas {
-	height: 400px;
+	height: 360px;
 	width: 640px;
 	display: block;
 	margin: 0 auto;
 	padding: 0;
+	margin-top: -380px;
+	position: relative;
+	z-index: 10px;
 }
 
 .show {
@@ -324,8 +347,13 @@ label img {
 	vertical-align: top;
 }
 
+.radio-label {
+	margin: 10px;
+}
+
 fieldset {
 	text-align: center;
-	width: 90%;
-	margin-left: 10px;
+	width: 70%;
+	display: block;
+	margin: 0 auto;
 }

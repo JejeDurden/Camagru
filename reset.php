@@ -35,7 +35,7 @@ if (isset($_POST["submit"]))
 		<div id="bg"></div>
 		<div id="log">
 		<h1>Camagru</h1>
-		<form action="reset.php" method="post" class="show">
+		<form action="reset.php" method="post">
 			<input type="text" placeholder="Email" name="email" value="" required /><br/>
 			<input type="submit" name="submit" value="Reset Password"><br />
 			<a href="login.php">Login</a>

@@ -48,7 +48,7 @@ if (isset($_POST["submit"]))
 		<div id="bg"></div>
 		<div id="log">
 		<h1>Camagru</h1>
-		<form action="create_user.php" method="post" class="show">
+		<form action="create_user.php" method="post">
 			<input type="text" name="login" value="" placeholder="Login" id="name" required /><br />
 			<input type="text" placeholder="Email" name="email" value="" required /><br/>
 			<input type="password" placeholder="Password" minlength=8 name="passwd" value="" required /><br />

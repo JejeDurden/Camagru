@@ -10,8 +10,10 @@ var constraints = {
 var video_statut = true;
 var image_statut = false;
 var current;
-var PosX = 200;
-var PosY = 200;
+var PosX = 0;
+var PosY = 0;
+var width = 0;
+var height = 0;
 
 document.addEventListener("click", function (e) {
 console.log(e);
@@ -42,21 +44,16 @@ function Snap() {
 		var canvas = document.getElementById('image');
 		var context = canvas.getContext('2d');
 		var filter = document.querySelector('input[name = "filter"]:checked');
-		if (filter) 
+		if (filter)
 		{
-			cv = document.getElementById("image");
-			if (cv.firstChild)
-				cv.insertBefore(canvas, cv.firstChild);
-			else
-				cv.appendChild(canvas);
 			if (document.getElementById('image').src)
 			{
 				var image = new Image();
 				image.src = document.getElementById('image').src;
-				context.drawImage(image, 0, 0, 640, 480);
+				context.drawImage(image, 0, 0, 640, 400);
 			}
 			else
-				context.drawImage(video, 0, 0, 640, 480);
+				context.drawImage(video, 0, 0, 640, 400);
 			var img = new Image();
 			img.src = filter.value;
 			context.drawImage(img, PosX, PosY, width, width);
@@ -102,21 +99,39 @@ function show_img(img_url)
 		var canvas = document.getElementById('image');
 		var context = canvas.getContext('2d');
 		context.clearRect(0, 0, canvas.width, canvas.height);
+		width = canvas.width;
+		height = canvas.height;
 		canvas.addEventListener("click", getClickPosition, false);
 		var img = new Image();
 		img.src = document.getElementById(img_url).value;
-		context.drawImage(img, PosY, PosX, canvas.width, canvas.height);
+		context.drawImage(img, PosX, PosY, 64, 64);
 	}
 }
 
 function getClickPosition(e)
 {
-		console.log(e);
 	if (current)
 	{
 		var rect = document.getElementById('image').getBoundingClientRect();
-		PosX = e.offsetX - rect.left;
-		PosY = e.offsetY - rect.top;
+		PosX = e.pageX - rect.left - width;
+		PosY = e.pageY - rect.top - height;
+		PosX = PosX > 0 ? PosX : 0;
+		PosY = PosY > 0 ? PosY : 0;
 		show_img(current);
 	}
+}
+
+function upload()
+{
+	document.getElementById('fileToUpload').click();
+}
+
+function clear() 
+{
+	this.value = null;
+}
+
+function sendImg()
+{
+	document.getElementById("upload").submit();
 }
