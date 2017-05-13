@@ -5,7 +5,8 @@ if(empty($_SESSION["loggued_on_user"]))
 {
 	header("Location: create_user.php");
 }
-if (isset($_POST["submit"]))
+var_dump($_POST);
+if ($_POST["fileToUpload"])
 {
 	$target_dir = "./public/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -21,7 +22,7 @@ if (isset($_POST["submit"]))
 	}
 	if ($check !== false)
 	{
-		echo "File is an image - " . $check["mime"] . ".";
+		echo "<div class='sent'>File is an image - " . $check["mime"] . ".</div>";
 		$uploadOk = 1;
 	}
 	else
@@ -38,7 +39,6 @@ if (isset($_POST["submit"]))
 		<meta charset="UTF-8" />
 		<title>Camagru</title>
 		<link rel="stylesheet" type="text/css" href="./public/css/stylesheet.css">
-		<script src="video.js" charset="utf-8"></script>
 	</head>
 	<body>
 		<header>
@@ -52,10 +52,10 @@ if (isset($_POST["submit"]))
 				<video autoplay></video>
 				<canvas id="image" draggable=true></canvas>
 			</div>
-			<button id="snap" onclick="javascript:Snap()">Snap</button>
-			<form action='index.php' id='upload' method="post" enctype="multipart/form-data">
-				<input type="file" name="fileToUpload" id="fileToUpload" onclick:"javascript:clear()" onchange="javascript:sendImg()">
-				<input type="submit" value="Upload Image" name="Btnsubmit" onclick="javascript:upload()">
+			<button id="snap" onclick="javascript:snap()">Snap</button>
+			<form id="upload" enctype="multipart/form-data" action="index.php" method="post">
+				<input type="file" name="fileToUpload" id="fileToUpload" onchange="javascript:sendImg()">
+				<input type="submit" value="Upload Image" onclick="javascript:upload()">
 			</form>
 		<form action="index.php">
 		<fieldset>
@@ -109,5 +109,6 @@ if (isset($_POST["submit"]))
 			<div><h1>hello@camagru.com</h3></div>
 			<div><p>Developed from Paris with love by jdesmare in 2017</p></div>
 		</div>
+		<script src="video.js" charset="utf-8"></script>
 	</body>
 </html>

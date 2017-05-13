@@ -47,8 +47,7 @@ function pwdCheck($password, $conn) {
 
 function authCheck($login, $password, $conn) {
 	$stmt = $conn->prepare("SELECT EXISTS (
-	  SELECT * FROM user WHERE login = :login AND password = :password
-	  AND active = '1')");
+	  SELECT * FROM user WHERE login = :login AND password = :password AND active = '1')");
 	$stmt->bindParam(':login', $login);
 	$stmt->bindParam(':password', $password);
 	$stmt->execute();
@@ -61,5 +60,14 @@ function authCheck($login, $password, $conn) {
 	{
 		return 0;
 	}
+}
+
+function getUserID($login) {
+	$stmt = $conn->prepare("SELECT EXISTS (
+	  SELECT * FROM user WHERE login = :login AND active = '1')");
+	$stmt->bindParam(':login', $login);
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	return ($result["id"]);
 }
 ?>

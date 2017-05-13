@@ -37,7 +37,7 @@ function errorCallback(err)
 	console.log("The following error occured: " + err);
 };
 
-function Snap() {
+function snap() {
 	if (video_statut == true || image_statut == true) 
 	{
 		var video = document.querySelector('video');
@@ -46,21 +46,14 @@ function Snap() {
 		var filter = document.querySelector('input[name = "filter"]:checked');
 		if (filter)
 		{
-			if (document.getElementById('image').src)
-			{
-				var image = new Image();
-				image.src = document.getElementById('image').src;
-				context.drawImage(image, 0, 0, 640, 400);
-			}
-			else
-				context.drawImage(video, 0, 0, 640, 400);
+			context.drawImage(video, 0, 0, 640, 400);
 			var img = new Image();
 			img.src = filter.value;
-			context.drawImage(img, PosX, PosY, width, width);
+			context.drawImage(img, PosX, PosY, 64, 64);
 			var data = canvas.toDataURL('image/png');
 			canvas.setAttribute('src', data);
-			document.getElementById('img').value = data;
-			var fd = new FormData(document.forms["form"]);
+			document.getElementById('image').value = data;
+			var fd = new FormData(document.forms["upload"]);
 			var httpr = new XMLHttpRequest();
 			httpr.open('POST', 'create_img.php', true);
 			httpr.send(fd);
@@ -70,25 +63,6 @@ function Snap() {
 	} 
 	else
 		alert("Vous devez d'abord activer votre webcam ou choisir une image.");
-}
-
-function readURL(input)
-{
-	if (input.files && input.files[0])
-	{
-		var reader = new FileReader();
-		image = document.getElementById('image');
-		reader.onload = function(e)
-		{
-			image.style.display = "";
-			image.setAttribute('src', e.target.result);
-			image.height = 480;
-			image.width = 640;
-			document.getElementById('video').style.display = "none";
-		};
-		reader.readAsDataURL(input.files[0]);
-	}
-	image_statut = true;
 }
 
 function show_img(img_url)
@@ -123,6 +97,7 @@ function getClickPosition(e)
 
 function upload()
 {
+	event.preventDefault();
 	document.getElementById('fileToUpload').click();
 }
 

@@ -276,7 +276,7 @@ input[type=file] {
 }
 
 #fileToUpload {
-	display: block;
+	display: none;
 }
 
 #submitHide {
