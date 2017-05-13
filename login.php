@@ -13,6 +13,7 @@ if (isset($_POST["submit"]))
 	{
 		$_SESSION["loggued_on_user"] = $login;
 		header("Location: index.php");
+		exit();
 	}
 	else
 	{
@@ -34,7 +35,7 @@ if (isset($_POST["submit"]))
 		<h1>Camagru</h1>
 		<form action="login.php" method="post">
 			<input type="text" name="login" value="" placeholder="Login" id="name" required /><br />
-			<input type="password" placeholder="Password"name="passwd" value="" required /><br />
+			<input type="password" placeholder="Password" name="passwd" value="" required /><br />
 			<input type="submit" name="submit" value="Log in">
 			<a href="create_user.php">Sign Up</a><br/>
 			<a href="reset.php">Reset password</a>

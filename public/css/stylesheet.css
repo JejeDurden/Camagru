@@ -62,8 +62,6 @@ video {
 	display: block;
 	margin: 0 auto;
 	padding: 0;
-	width: 640px;
-	height: 400px;
 }
 
 .main {
@@ -73,7 +71,7 @@ video {
 	float: left;
 	display: block;
 	letter-spacing: 1em;
-	top: 60px;
+	top: 65px;
 }
 
 .modif {
@@ -230,6 +228,7 @@ h3 {
 	font-weight: bold;
 	text-decoration: none;
 	cursor: pointer;
+	position: relative;
 }
 
 #center {
@@ -247,12 +246,15 @@ input {
 	padding: 5px 9px;
 }
 
-input[type=submit], input[type=file] {
+input[type=submit] {
 	cursor: pointer;
 	background-color: #1abc9c;
 	color: white;
 	padding: 5px 5px;
 	vertical-align: middle;
+}
+
+#Btnsubmit {
 	display: block;
 }
 
@@ -311,11 +313,9 @@ h1 {
 canvas {
 	height: 360px;
 	width: 640px;
-	display: block;
+	display: none;
 	margin: 0 auto;
 	padding: 0;
-	margin-top: -380px;
-	position: relative;
 	z-index: 10px;
 }
 

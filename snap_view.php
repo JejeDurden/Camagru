@@ -4,14 +4,12 @@ include './config/database.php';
 if(empty($_SESSION["loggued_on_user"]))
 {
 	header("Location: create_user.php");
-}
-else if ($_POST["submit"] == "Log Out")
-{
-	header("Location: logout.php");
+	exit();
 }
 else if (empty($GET["id"]))
 {
 	header("Location: index.php");
+	exit();
 }
 ?>
 

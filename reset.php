@@ -10,11 +10,11 @@ if (isset($_POST["submit"]))
 
 	try {
 		$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		$sql = $conn->prepare("INSERT INTO user (email, token) VALUES (:email, :key)");
+		$sql = $conn->prepare("UPDATE user SET token = :key WHERE email = :email");
 		$sql->bindParam(':email', $email);
 		$sql->bindParam(':key', $key);
 		$sql->execute();
-		sendMail($email, $email, $key);
+		resetMail($email, $email, $key);
 		echo "<div class='sent'>Email sent. Please log in your mailbox to reset your password</div>\n";
 	}
 	catch(PDOException $e) {

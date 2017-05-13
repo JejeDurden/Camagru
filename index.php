@@ -4,6 +4,7 @@ include './config/database.php';
 if(empty($_SESSION["loggued_on_user"]))
 {
 	header("Location: create_user.php");
+	exit();
 }
 var_dump($_POST);
 if ($_POST["fileToUpload"])
@@ -49,13 +50,13 @@ if ($_POST["fileToUpload"])
 		</header>
 		<div class="main">
 			<div id="video">
-				<video autoplay></video>
+				<video autoplay id="cam"></video>
 				<canvas id="image" draggable=true></canvas>
 			</div>
 			<button id="snap" onclick="javascript:snap()">Snap</button>
 			<form id="upload" enctype="multipart/form-data" action="index.php" method="post">
 				<input type="file" name="fileToUpload" id="fileToUpload" onchange="javascript:sendImg()">
-				<input type="submit" value="Upload Image" onclick="javascript:upload()">
+				<input type="submit" value="Upload Image" id="Btnsubmit" onclick="javascript:upload()">
 			</form>
 		<form action="index.php">
 		<fieldset>

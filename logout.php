@@ -7,5 +7,5 @@ $_SESSION["admin"] = NULL;
 $_SESSION["loggued_on_user"] = NULL;
 session_destroy();
 header('Location: index.php');
-
+exit();
 ?>
