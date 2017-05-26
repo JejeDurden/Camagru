@@ -50,10 +50,11 @@ function snap() {
 			context.drawImage(img, PosX, PosY);
 			var data = canvas.toDataURL('image/png');
 			canvas.setAttribute('src', data);
-			document.getElementById('image').value = data;
+			var fd = new FormData();
+			fd.append('data', data);
 			var httpr = new XMLHttpRequest();
 			httpr.open('POST', 'create_img.php', true);
-			httpr.send(canvas.src);
+			httpr.send(fd);
 		}
 		else
 			alert("Vous devez d'abord selectionner un filtre.");

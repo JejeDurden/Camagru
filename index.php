@@ -6,14 +6,13 @@ if(empty($_SESSION["loggued_on_user"]))
 	header("Location: create_user.php");
 	exit();
 }
-var_dump($_POST);
 if ($_POST["fileToUpload"])
 {
 	$target_dir = "./public/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-	if (!empty($_FILES["fileToUpload"]["tmp_name"]))
+	if (!empty($_FILES["upload"]["tmp_name"]))
 	{
 		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	}
@@ -45,7 +44,7 @@ if ($_POST["fileToUpload"])
 		<header>
 			<a href='/'><h1>Camagru</h1></a><ul>
 			<li><a href='logout.php'>Log Out</a></li>
-			<li><a href='account.php'>Mon compte</a></li>
+			<li><a href='account.php'>My account</a></li>
 			<li><a href='gallery.php'>Gallery</a></li></ul>
 		</header>
 		<div class="main">
@@ -88,16 +87,44 @@ if ($_POST["fileToUpload"])
 		<aside>
 		<h3>Last pics</h3>
 		<?PHP
+		$dup = $conn;
 		try {
 			$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			$sql = $conn->query("SELECT * FROM image");
-			$i = 0;
-			while ($row = $sql->fetch() && $i < 10)
+			$sql = $conn->query("SELECT * FROM image ORDER BY id DESC LIMIT 4");
+			while ($row = $sql->fetch())
 			{
-				echo "<tr>";
-				echo "<td>" . $row['id'] ."</td>";
-				echo "</tr>";
-				$i++;
+				echo "<div class='imgside'>";
+				echo "<a href='snap_view.php?id=" . $row["id"] . "'><img class='smallimg' src='" . $row["path"] . "'></a>";
+				$id = $row["id"];
+				try {
+					$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+					$dup = $conn->prepare("SELECT COUNT(*) FROM hearts WHERE imageID = :id ");
+					$dup->bindParam(':id', $id);
+					$dup->execute();
+					$hearts = $dup->fetch();
+					{
+						echo "<div class='underimgside'>";
+						echo "<img class='heart' src='./public/img/heart.png'><span class='count'>" . $hearts[0] . "</span>";
+					}
+				}
+				catch(PDOException $e) {
+					echo "<div class='error'>Connection failed: " . $e->getMessage() . "\n</div>";
+				}
+				try {
+					$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+					$dup = $conn->prepare("SELECT COUNT(*) FROM comments WHERE imageID = :id ");
+					$dup->bindParam(':id', $id);
+					$dup->execute();
+					$comments = $dup->fetch();
+					{
+						echo "<img class='comment' src='./public/img/comment.png'><span class='count'>" . $comments[0] . "</span>";
+						echo "</div>";
+						echo "</div>";
+					}
+				}
+				catch(PDOException $e) {
+					echo "<div class='error'>Connection failed: " . $e->getMessage() . "\n</div>";
+				}
 			}
 		}
 		catch(PDOException $e) {
