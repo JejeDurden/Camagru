@@ -8,7 +8,31 @@ if(empty($_SESSION["loggued_on_user"]))
 }
 else if ($_POST["submit"] == "delete")
 {
-	
+	$login = $_SESSION["loggued_on_user"];
+	try
+	{
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = $conn->prepare("SELECT id FROM user WHERE login = :login");
+		$sql->bindParam(':login', $login);
+		$sql->execute();
+		$row = $sql->fetch();
+		$userID = $row["id"];
+	}
+	catch (PDOException $e)
+	{
+		echo "Connection failed: " . $e->getMessage() . "\n";
+	}
+	try
+	{
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = $conn->prepare("DELETE FROM user WHERE id = :userID");
+		$sql->bindParam(':userID', $userID);
+		$sql->execute();
+	}
+	catch (PDOException $e)
+	{
+		echo "Connection failed: " . $e->getMessage() . "\n";
+	}
 }
 ?>
 
@@ -33,12 +57,9 @@ else if ($_POST["submit"] == "delete")
 		</header>
 		<div class="modif">
 			<div><h2>My account</h2>
-				<h4 onclick="showDiv()">Change username</h4>
-				<div id="show">
-				<input type="text" name="newlogin" value="New login">
-				<input type="submit" name="submit" value="Submit">
-				</div>
-				<input id="delete" type="submit" name="delete" value="Delete My Account">
+				<form action="account.php" method="post">
+					<input id="delete" type="submit" name="delete" value="Delete My Account">
+				</form>
 			</div>
 		</div>
 		<aside>

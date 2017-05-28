@@ -25,11 +25,10 @@ else if (empty($_GET["id"]))
 			<a href='index.php'><h1>Camagru</h1></a><ul>
 			<li><a href='logout.php'>Log Out</a></li>
 			<li><a href='account.php'>My account</a></li>
-			<li><a href='gallery.php'>Gallery</a></li></ul>
+			<li><a href='gallery.php'>Gallery</a></li>
 			<li><a href='index.php'>Snap</a></li></ul>
 		</header>
 		<div class="main">
-			<div id="video">
 				<div id="image">
 					<?php
 						$id = $_GET["id"];
@@ -39,18 +38,33 @@ else if (empty($_GET["id"]))
 							$sql->bindParam(':id', $id);
 							$sql->execute();
 							$row = $sql->fetch();
+							$author = $row["userID"];
+							$imageID = $row["id"];
 							echo "<div class='snapview'>";
-							echo "<a href='snap_view.php?id=" . $row["id"] . "'><img class='imggallery' src='" . $row["path"] . "'></a>";
-							echo "</div>";
+							echo "<a href='snap_view.php?id=" . $imageID . "'><img class='snapimg' src='" . $row["path"] . "'></a>";
+							try {
+								$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+								$dup = $conn->prepare("SELECT COUNT(*) FROM hearts WHERE imageID = :id ");
+								$dup->bindParam(':id', $id);
+								$dup->execute();
+								$hearts = $dup->fetch();
+								echo "<div class='snapheart'>";
+								echo "<a href='add_like.php?id=" . $id . "&path=snap_view'><img class='heart' src='./public/img/heart.png'></a><span class='count'>" . $hearts[0] . "</span></div>";
+							}
+							catch(PDOException $e) {
+								echo "<div class='error'>Connection failed: " . $e->getMessage() . "\n</div>";
+							}
 							try {
 								$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 								$sql = $conn->prepare("SELECT * FROM comments WHERE imageID = :id");
 								$sql->bindParam(':id', $id);
 								$sql->execute();
-								$row = $sql->fetch();
-								echo "<div class='comment'>";
-								echo "<textarea>" . $row["content"] . "</textarea>";
-								echo "</div>";
+								while ($row = $sql->fetch())
+								{
+									echo "<div class='comment'>";
+									echo "<textarea disabled>" . $row["content"] . "</textarea>";
+									echo "</div>";
+								}
 							}
 							catch(PDOException $e) {
 								echo "<div class='error'>Connection failed: " . $e->getMessage() . "\n</div>";
@@ -59,7 +73,29 @@ else if (empty($_GET["id"]))
 						catch(PDOException $e) {
 							echo "<div class='error'>Connection failed: " . $e->getMessage() . "\n</div>";
 						}
-					?>
+						echo "<div class='newcomment'><textarea name='newcomment' form='newcomment' placeholder='Write a comment...'></textarea>";
+						echo "<form action='add_comment.php?id=" . $id . "' id='newcomment' method='post'><input type='submit'></form></div>";
+						$login = $_SESSION["loggued_on_user"];
+						try
+						{
+							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$sql = $conn->prepare("SELECT id FROM user WHERE login = :login");
+							$sql->bindParam(':login', $login);
+							$sql->execute();
+							$row = $sql->fetch();
+							$userID = $row["id"];
+						}
+						catch (PDOException $e)
+						{
+							echo "Connection failed: " . $e->getMessage() . "\n";
+						}
+						if ($userID === $author)
+						{
+							echo "<form action='delete_image.php?id=" . $imageID . "' method='post'><input id='delete' type='submit' value='Delete Image'></form>";
+						}
+						?>
+					</div>
+				</div>
 		</div>
 		<aside>
 		<h3>Last pics</h3>

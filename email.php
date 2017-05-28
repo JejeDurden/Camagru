@@ -29,10 +29,10 @@ function resetMail($dest, $login, $key) {
 function commentMail($dest, $login, $pic) {
 	$obj = "New comment";
 	$from = "From: noresponse@camagru.com";
-	$msg = 'Hello'.$login.',
-		To activate your account and access content on our website, please click
-		on the following link :
-		http://localhost:8080/Camagru/snap_view.php?pic='.urlencode($pic).'
+	$msg = 'Hello '.$login.',
+		You have a new comment on your picture ! Check it out at
+		the following link :
+		http://localhost:8080/Camagru/snap_view.php?id='.urlencode($pic).'
 		Cheers,
 		Camagru Team';
 	$message = wordwrap($msg, 70, "\r\n");

@@ -41,7 +41,7 @@ if(empty($_SESSION["loggued_on_user"]))
 					$hearts = $dup->fetch();
 					{
 						echo "<div class='underimgside'>";
-						echo "<img class='heart' src='./public/img/heart.png'><span class='count'>" . $hearts[0] . "</span>";
+						echo "<a href='add_like.php?id=" . $id . "&path=gallery'><img class='heart' src='./public/img/heart.png'></a><span class='count'>" . $hearts[0] . "</span>";
 					}
 				}
 				catch(PDOException $e) {
@@ -54,7 +54,8 @@ if(empty($_SESSION["loggued_on_user"]))
 					$dup->execute();
 					$comments = $dup->fetch();
 					{
-						echo "<img class='comment' src='./public/img/comment.png'><span class='count'>" . $comments[0] . "</span>";
+						echo "<a href='snap_view.php?id=" . $row["id"] . "'>";
+						echo "<img class='comment' src='./public/img/comment.png'></a><span class='count'>" . $comments[0] . "</span>";
 						echo "</div>";
 						echo "</div>";
 					}

@@ -6,15 +6,23 @@ if(empty($_SESSION["loggued_on_user"]))
 	header("Location: create_user.php");
 	exit();
 }
-if ($_POST["fileToUpload"])
+if ($_FILES["fileToUpload"])
 {
-	$target_dir = "./public/";
+	$wanted_width = 640;
+	$wanted_height = 480;
+	$target_dir = "./public/img/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-	if (!empty($_FILES["upload"]["tmp_name"]))
+	if (!empty($_FILES["fileToUpload"]["tmp_name"]))
 	{
 		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+		$img_width = $check[0];
+		$img_height = $check[1];
+		$ratio = ($img_width > $img_height) ? $wanted_width/$img_width : $wanted_height/$img_height;
+		$new_img = imagecreatetruecolor(640, 480);
+		$source = imagecreatefrompng($_FILES["fileToUpload"]["tmp_name"]);
+		imagecopyresampled($new_img, $source, 0, 0, 0, 0, 640, 480, $img_width, $img_height);
 	}
 	else
 	{
@@ -22,12 +30,12 @@ if ($_POST["fileToUpload"])
 	}
 	if ($check !== false)
 	{
-		echo "<div class='sent'>File is an image - " . $check["mime"] . ".</div>";
+		imagepng($new_img, $target_file);
 		$uploadOk = 1;
 	}
 	else
 	{
-		echo "<div class='error'>File is not an image. Please try again</div>\n";
+		print "<div class='error'>File is not an image. Please try again</div>\n";
 		$uploadOk = 0;
 	}
 }
@@ -42,14 +50,23 @@ if ($_POST["fileToUpload"])
 	</head>
 	<body>
 		<header>
-			<a href='/'><h1>Camagru</h1></a><ul>
+			<a href='index.php'><h1>Camagru</h1></a><ul>
 			<li><a href='logout.php'>Log Out</a></li>
 			<li><a href='account.php'>My account</a></li>
 			<li><a href='gallery.php'>Gallery</a></li></ul>
 		</header>
 		<div class="main">
 			<div id="video">
-				<video autoplay id="cam"></video>
+			<?PHP
+				if ($uploadOk == 1)
+				{
+					echo "<img id='cam' src='". $target_file . "'>";
+				}
+				else
+				{
+					echo "<video autoplay id='cam'></video>";
+				}
+			?>
 				<canvas id="image" draggable=true></canvas>
 			</div>
 			<button id="snap" onclick="javascript:snap()">Snap</button>

@@ -7,22 +7,38 @@ var constraints = {
 	video: true,
 	audio: false
 };
-var video_statut = true;
-var image_statut = false;
+
+var viWidth = 640;
+var viHeight = 480;
+
+var video = document.querySelector('video');
+if (video)
+{
+	var video_statut = true;
+	var image_statut = false;
+}
+else
+{
+	var video_statut = false;
+	var image_statut = true;
+}
+
+if (image_statut == true)
+{
+	var upload = document.getElementById("cam");
+	upload.style.width = viWidth;
+	upload.style.height = viHeight;
+}
+
 var current;
 var PosX = 10;
 var PosY = 10;
-var width = 0;
-var height = 0;
 
-if (navigator.getUserMedia)
+if (navigator.getUserMedia && video)
 	navigator.getUserMedia(constraints, successCallback, errorCallback);
-else
-	console.error("getUserMedia not supported");
 
 function successCallback(localMediaStream) 
 {
-	var video = document.querySelector('video');
 	video.src = window.URL.createObjectURL(localMediaStream);
 	video.play();
 };
@@ -36,15 +52,15 @@ function errorCallback(err)
 function snap() {
 	if (video_statut == true || image_statut == true) 
 	{
-		var video = document.getElementById('cam');
+		var cam = document.getElementById('cam');
 		var canvas = document.getElementById('image');
-		canvas.width = video.videoWidth;
-		canvas.height = video.videoHeight;
+		canvas.width = viWidth;
+		canvas.height = viHeight;
 		var context = canvas.getContext('2d');
 		var filter = document.querySelector('input[name = "filter"]:checked');
 		if (filter)
 		{
-			context.drawImage(video, 0, 0);
+			context.drawImage(cam, 0, 0);
 			var img = new Image();
 			img.src = filter.value;
 			context.drawImage(img, PosX, PosY);
@@ -68,20 +84,24 @@ function show_img(img_url)
 	if ((video_statut == true || image_statut == true) && img_url)
 	{
 		current = img_url;
-		var video = document.getElementById('cam');
+		var cam = document.getElementById('cam');
 		var canvas = document.getElementById('image');
-		canvas.width = video.videoWidth;
-		canvas.height = video.videoHeight;
+		canvas.width = viWidth;
+		canvas.height = viHeight;
 		var context = canvas.getContext('2d');
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		canvas.style.width = video.videoWidth;
-		canvas.style.height = video.videoHeight;
-		canvas.style.marginTop = video.videoHeight * -1;
+		canvas.style.width = viWidth;
+		canvas.style.height = viHeight;
+		canvas.style.marginTop = viHeight * -1;
 		canvas.style.display = "block";
 		var img = new Image();
 		img.src = document.getElementById(img_url).value;
 		context.drawImage(img, PosX, PosY, 64, 64);
-		video.addEventListener("click", getClickPosition, false);
+		if (video_statut == true)
+			cam.addEventListener("click", getClickPosition, false);
+		else
+			canvas.addEventListener("click", getClickPosition, false);
+
 	}
 }
 
@@ -111,3 +131,4 @@ function sendImg()
 {
 	document.getElementById("upload").submit();
 }
+
